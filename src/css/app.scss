@@ -1,0 +1,299 @@
+// src/css/app.scss
+
+// Tema de Agência de Inteligência Futurista
+@import './quasar.variables.scss';
+
+// Estilos globais
+body {
+  background-color: $background;
+  color: $text-color;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+// Estilos para o layout principal
+.q-layout {
+  background-color: $background;
+}
+
+// Barra de navegação
+.q-header {
+  background-color: $primary;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .q-toolbar {
+    min-height: 56px;
+  }
+
+  .q-toolbar-title {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+}
+
+// Drawer lateral
+.q-drawer {
+  background-color: darken($primary, 3%);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+
+  .q-item {
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 8px; // Cantos mais arredondados para itens do menu
+    margin: 0 8px;
+
+    &.q-router-link--active {
+      background-color: rgba(0, 160, 176, 0.15);
+      color: $accent;
+
+      .q-icon {
+        color: $accent;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.07);
+    }
+  }
+
+  .q-item-label {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    padding-left: 12px;
+  }
+}
+
+// Cards
+.q-card {
+  background-color: lighten($background, 5%);
+  border: 1px solid $border-color;
+  border-radius: 16px !important; // Cards com cantos mais arredondados
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  overflow: hidden; // Importante para imagens dentro de cards com bordas arredondadas
+
+  &:hover {
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+    transform: translateY(-3px);
+  }
+
+  .q-card__section {
+    padding: 16px;
+  }
+}
+
+// Estilização para cards de documentos
+.document-card {
+  position: relative;
+  overflow: hidden;
+  border-top: 2px solid transparent;
+  border-radius: 16px !important; // Garantir que cards de documentos também tenham cantos arredondados
+
+  &:hover {
+    border-top-color: $accent;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $accent, transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+// Estilização para cards de tags
+.tag-folder-card {
+  border-left: 3px solid $info;
+  background-color: transparentize($info, 0.9);
+  border-radius: 16px !important; // Cards de tag também com cantos arredondados
+}
+
+// Chips para tags
+.tag-badge {
+  font-size: 0.8rem;
+  border-radius: 12px !important; // Mais arredondados
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+// Barra de busca - Estilos adicionais serão definidos no componente
+
+// Botões
+.q-btn {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  &.q-btn--standard {
+    border-radius: 12px; // Botões mais arredondados
+  }
+
+  &.q-btn--outline {
+    border-width: 1px;
+    border-radius: 12px; // Botões mais arredondados
+  }
+
+  // Botões de ação principal ainda mais arredondados
+  &.q-btn--primary {
+    border-radius: 24px;
+  }
+}
+
+// Paginação
+.q-pagination {
+  .q-btn {
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px; // Botões da paginação mais arredondados
+
+    &.q-btn--active {
+      background-color: $accent;
+      color: white;
+    }
+  }
+}
+
+// Tabelas
+.q-table {
+  background-color: transparent;
+  border: 1px solid $border-color;
+  border-radius: 16px !important; // Tabelas arredondadas
+  overflow: hidden;
+
+  thead tr {
+    background-color: darken($primary, 2%);
+
+    th {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 500;
+    }
+  }
+
+  tbody tr {
+    background-color: lighten($background, 3%);
+
+    &:nth-child(even) {
+      background-color: lighten($background, 5%);
+    }
+
+    &:hover {
+      background-color: lighten($background, 8%);
+    }
+  }
+}
+
+// Modais
+.q-dialog__inner {
+  .q-card {
+    max-width: 90vw;
+    background-color: lighten($background, 5%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border-radius: 20px !important; // Modais ainda mais arredondados
+  }
+}
+
+// Modal de documento
+.document-modal-card {
+  background-color: lighten($background, 5%);
+  border-radius: 20px !important; // Modal de documento ainda mais arredondado
+
+  .document-container {
+    background-color: lighten($background, 3%);
+    border-radius: 12px; // Container interno arredondado
+    margin: 0 16px 16px 16px;
+
+    .document-content {
+      background-color: lighten($background, 8%);
+      color: $text-color;
+      border-radius: 10px; // Conteúdo arredondado
+
+      p {
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
+
+// Estilo de highlight para termos de busca
+.highlight-search-term,
+:deep(mark) {
+  background-color: rgba(0, 160, 176, 0.25);
+  color: lighten($accent, 30%);
+  padding: 0 2px;
+  border-radius: 4px; // Destaques de busca arredondados
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+// Scrollbar personalizado
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: lighten($background, 3%);
+  border-radius: 8px; // Scrollbar arredondado
+}
+
+::-webkit-scrollbar-thumb {
+  background: lighten($secondary, 10%);
+  border-radius: 8px; // Thumb do scrollbar arredondado
+
+  &:hover {
+    background: lighten($secondary, 15%);
+  }
+}
+
+// Tipografia
+.text-h4,
+.text-h5,
+.text-h6 {
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.text-subtitle1,
+.text-subtitle2 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.text-caption {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+// Inputs
+.q-input {
+  .q-field__control {
+    background-color: lighten($background, 8%);
+    border: 1px solid $border-color;
+    border-radius: 12px !important; // Campos de input arredondados
+  }
+
+  .q-field__label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+// Adicionando classes úteis para cantos arredondados
+.rounded-borders-sm {
+  border-radius: 8px !important;
+}
+
+.rounded-borders-md {
+  border-radius: 16px !important;
+}
+
+.rounded-borders-lg {
+  border-radius: 24px !important;
+}
